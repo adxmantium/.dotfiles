@@ -7,7 +7,6 @@ else
 fi
 
 if [[ -z $selected ]]; then
-    echo "No directory selected"
     exit 0
 fi
 

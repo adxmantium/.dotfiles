@@ -33,7 +33,5 @@ if [ -n "$selected" ]; then
     tmux new-session -ds "$selected"
     tmux switch-client -t "$selected"
   fi
-else
-  echo "Empty query. Exiting."
 fi
 

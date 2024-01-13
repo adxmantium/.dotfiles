@@ -24,6 +24,4 @@ if [[ $line_count -eq 2 ]]; then
   session_trimmed=$(echo "$selected_session" | tail -n +2)
   tmux kill-session -t $session_trimmed
   echo "session '$session_trimmed' deleted"
-else
-  echo "session '$selected_session' does not exist. Exiting."
 fi
