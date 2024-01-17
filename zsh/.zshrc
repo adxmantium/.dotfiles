@@ -27,6 +27,8 @@ alias tmuxconfig="vim ~/.tmux.conf"
 alias neovimconfig="vim ~/.config/nvim"
 alias ts="~/.dotfiles/scripts/tmux-sessions.sh"
 alias tsd="~/.dotfiles/scripts/tmux-delete-sessions.sh"
+alias tsf="~/.dotfiles/scripts/find_and_open_file_in_vim.sh"
+alias cht="~/.dotfiles/scripts/cheatsht/tmux-cht.sh"
 
 # --------------------------------
 # Enables Vi mode in readline
