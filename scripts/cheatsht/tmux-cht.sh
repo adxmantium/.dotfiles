@@ -1,12 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-selected=`cat ~/.dotfiles/scripts/cheatsht/cht-languages ~/.dotfiles/scripts/cheatsht/cht-commands | fzf --reverse --prompt="Search cheatsheet > "`
+selected=`cat ~/.dotfiles/scripts/cheatsht/cht-languages ~/.dotfiles/scripts/cheatsht/cht-commands | fzf-tmux -p --reverse --prompt="Search cheatsheet > "`
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
-read -p "Enter Query: " query
+query=$(echo '' | fzf-tmux -p --print-query --reverse --prompt="Cheatsheet query > ")
 
 if grep -qs "$selected" ~/.dotfiles/scripts/cheatsht/cht-languages; then
     query=`echo $query | tr ' ' '+'`
