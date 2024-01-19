@@ -18,8 +18,9 @@ local cmd = string.format('echo "%s" | fzf-tmux -p --reverse --prompt="Scriptini
 local selection = util.exec(cmd)
 selection = selection:gsub("%s+", "")
 
+local runCmd = scriptMap[selection]
+
 -- execute cmd associated w/ selected script name
-if selection ~= nil then
-	local runCmd = scriptMap[selection]
+if runCmd ~= nil then
 	util.exec(runCmd)
 end
