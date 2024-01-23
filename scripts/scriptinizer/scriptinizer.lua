@@ -3,6 +3,7 @@ local util = require("myutils")
 -- add new scripts here to ahve them available for selection
 local scriptMap = {
 	cheatsheet = "~/.dotfiles/scripts/cheatsht/tmux-cht.sh",
+	git_add = "~/.dotfiles/scripts/git/git_add.sh",
 }
 
 -- create a string of script names that gets piped to fzf for selecting
