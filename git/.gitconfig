@@ -3,3 +3,5 @@
 [user]
 	name = adxmantium
 	email = ajadams10@gmail.com
+[core]
+  editor = nvim
