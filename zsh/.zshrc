@@ -8,7 +8,7 @@ fi
 # --------------------------------
 # My Aliases
 # --------------------------------
-alias ll="ls -lah"
+alias ll="eza -la --icons"
 alias whatsmyip="ipconfig getifaddr en0"
 alias oaklandWeather="curl wttr.in/oakland"
 alias atlantaWeather="curl wttr.in/atlanta"
