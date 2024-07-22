@@ -1,6 +1,6 @@
 #!/usr/bin
 
-STOW_FOLDERS="git,tmux,nvim,zsh"
+STOW_FOLDERS="git,tmux,nvim,zsh,wezterm"
 
 DOT_FILES=$HOME/.dotfiles
 
