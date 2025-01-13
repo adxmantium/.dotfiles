@@ -3,7 +3,7 @@
 set -e  # Exit on error
 set -u  # Exit on undefined variable
 
-STOW_FOLDERS="git,tmux,nvim,zsh,wezterm"
+STOW_FOLDERS="git,tmux,nvim,zsh,wezterm,starship"
 DOT_FILES=$HOME/.dotfiles
 
 # Check if Homebrew is installed
@@ -47,9 +47,14 @@ install_if_missing "gh"
 install_if_missing "lua"
 install_if_missing "go"
 install_if_missing "ripgrep"
-install_if_missing "fzf"
 install_if_missing "bat"
 install_if_missing "htop"
+install_if_missing "fzf"
+# Check if fzf keybindings are installed by looking for the completion file
+if [ ! -f "$HOME/.fzf.zsh" ]; then
+    echo "Setting up fzf key bindings and completion..."
+    $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
+fi
 
 echo "Setting up configuration files..."
 pushd "$DOT_FILES" || exit 1

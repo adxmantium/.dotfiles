@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # History configuration
 HISTSIZE=10000
 SAVEHIST=10000
@@ -50,6 +43,21 @@ alias ....='cd ../../..'
 alias ~='cd ~'
 alias dotfiles='cd ~/.dotfiles'
 
+# Safety first - prevent dangerous rm commands
+safer_rm() {
+    # Prevent rm -rf / or rm -rf /*
+    if [[ "$*" =~ ^-[[:alnum:]]*[fF][[:alnum:]]*[[:space:]]*(\/|\/\*) ]]; then
+        echo "Error: Attempting to remove root directory or its contents. Operation blocked for safety."
+        return 1
+    fi
+    
+    # Call the real rm command
+    command rm "$@"
+}
+
+# Set up the alias for safer rm
+alias rm='safer_rm'
+
 # --------------------------------
 # FZF configuration
 # --------------------------------
@@ -62,6 +70,13 @@ if [ -n "$TMUX" ]; then
     export FZF_DEFAULT_OPTS='--layout=reverse --border'
 else
     export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+fi
+
+# Configure CTRL-T, CTRL-R, and ALT-C behavior when in tmux
+if [ -n "$TMUX" ]; then
+    export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always {}' --preview-window=right:60%"
+    export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window=down:3:hidden:wrap --bind '?:toggle-preview'"
+    export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -n 10'"
 fi
 
 # Quick find-and-edit with fzf/fzf-tmux
@@ -89,7 +104,6 @@ export VISUAL='nvim'
 # Enables Vi mode in readline
 # --------------------------------
 bindkey -v
-
 # Reduces lag time for vi mode input
 export KEYTIMEOUT=1
 
@@ -101,23 +115,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # --------------------------------
-# pure prompt init
-# --------------------------------
-# autoload -U promptinit; promptinit
-# prompt pure
-
-# --------------------------------
 # Zsh Syntax Highlighting init
 # --------------------------------
 if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
-
-# --------------------------------
-# Disable oh-my-zsh themes (leave empty)
-# - using powerlevel10k theme
-# --------------------------------
-ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # --------------------------------
 # Zsh Autosuggestions init
@@ -126,14 +128,15 @@ if [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
+# --------------------------------
+# bun
+# --------------------------------
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 # bun completions
 [ -s "/Users/adamadams/.bun/_bun" ] && source "/Users/adamadams/.bun/_bun"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# --------------------------------
+# Initialize starship prompt
+# --------------------------------
+eval "$(starship init zsh)"
