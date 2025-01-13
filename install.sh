@@ -36,7 +36,7 @@ install_if_missing "stow"
 # Terminal and shell tools
 install_if_missing "wezterm" "cask"
 install_if_missing "font-meslo-lg-nerd-font" "cask"
-install_if_missing "powerlevel10k"
+install_if_missing "starship"
 install_if_missing "zsh-autosuggestions"
 install_if_missing "zsh-syntax-highlighting"
 install_if_missing "eza"
