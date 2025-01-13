@@ -117,15 +117,15 @@ export NVM_DIR="$HOME/.nvm"
 # --------------------------------
 # Zsh Syntax Highlighting init
 # --------------------------------
-if [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+   source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # --------------------------------
 # Zsh Autosuggestions init
 # --------------------------------
-if [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-   source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 # --------------------------------
