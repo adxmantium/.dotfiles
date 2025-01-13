@@ -14,15 +14,18 @@ fi
 
 # Function to install a package if it's not already installed
 install_if_missing() {
-    if ! brew list "$1" >/dev/null 2>&1; then
-        echo "Installing $1..."
-        if [[ "$2" == "cask" ]]; then
-            brew install --cask "$1"
+    local package=$1
+    local type=${2:-""}  # Set default value to empty string if not provided
+    
+    if ! brew list "$package" >/dev/null 2>&1; then
+        echo "Installing $package..."
+        if [[ "$type" == "cask" ]]; then
+            brew install --cask "$package"
         else
-            brew install "$1"
+            brew install "$package"
         fi
     else
-        echo "$1 is already installed"
+        echo "$package is already installed"
     fi
 }
 
@@ -56,6 +59,7 @@ if [ ! -f "$HOME/.fzf.zsh" ]; then
     $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
 fi
 
+# init all stow'd config files
 echo "Setting up configuration files..."
 pushd "$DOT_FILES" || exit 1
 for folder in $(echo "$STOW_FOLDERS" | sed "s/,/ /g"); do
