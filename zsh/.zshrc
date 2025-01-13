@@ -5,35 +5,91 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# History configuration
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+setopt SHARE_HISTORY           # Share history between sessions
+setopt HIST_EXPIRE_DUPS_FIRST # Delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt HIST_IGNORE_DUPS       # Ignore duplicated commands
+setopt HIST_IGNORE_SPACE      # Ignore commands that start with space
+setopt HIST_VERIFY           # Show command with history expansion before running it
+
 # --------------------------------
 # My Aliases
 # --------------------------------
-alias ll="eza -la --icons"
 alias whatsmyip="ipconfig getifaddr en0"
-alias oaklandWeather="curl wttr.in/oakland"
-alias atlantaWeather="curl wttr.in/atlanta"
-alias walnutcreekWeather="curl wttr.in/walnut-creek"
-alias edit="vim ~/.zshrc"
-alias view="cat ~/.zshrc"
-alias openports="lsof -i"
-alias cat="bat"
 alias ff='cd "$(fd -t d --exclude ~/Music/ --exclude ~/Movies/ --exclude ~/Library/ --exclude ~/Pictures/ . | fzf-tmux -p --reverse)"'
 alias fo='vim "$(fd --exclude ~/Music/ --exclude ~/Movies/ --exclude ~/Library/ --exclude ~/Pictures/ --type f | fzf-tmux -p --reverse)"'
-alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias vim="nvim"
-alias zel="zellij"
-alias vimconfig="vim ~/.zshrc"
-alias tmuxconfig="vim ~/.tmux.conf"
-alias neovimconfig="vim ~/.config/nvim"
-alias ts="~/.dotfiles/scripts/tmux-sessions.sh"
-alias tsd="~/.dotfiles/scripts/tmux-delete-sessions.sh"
-alias tsf="~/.dotfiles/scripts/find_and_open_file_in_vim.sh"
 alias cht="~/.dotfiles/scripts/cheatsht/tmux-cht.sh"
+
+# Modern CLI alternatives
+alias ls='eza --icons'
+alias la='eza -l --icons'
+alias ll="eza -la --icons"
+alias cat='bat'
+alias find='fd'
+alias htop='btop'
+alias grep='rg'
+
+# Git aliases
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git pull'
+alias gd='git diff'
+alias gco='git checkout'
+alias gb='git branch'
+
+# Navigation aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+alias dotfiles='cd ~/.dotfiles'
+
+# --------------------------------
+# FZF configuration
+# --------------------------------
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+# Set different FZF display options based on whether we're in tmux
+if [ -n "$TMUX" ]; then
+    export FZF_TMUX=1
+    export FZF_TMUX_OPTS='-p 80%,60%'  # Use popup window
+    export FZF_DEFAULT_OPTS='--layout=reverse --border'
+else
+    export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+fi
+
+# Quick find-and-edit with fzf/fzf-tmux
+fe() {
+  local file
+
+  if [ -n "$TMUX" ]; then
+    file=$(command fzf-tmux -p 80%,60% --preview 'bat --style=numbers --color=always {}' --preview-window=right:60%)
+  else
+    file=$(command fzf --preview 'bat --style=numbers --color=always {}' --preview-window=right:60%)
+  fi
+
+  if [ -n "$file" ]; then
+    ${EDITOR:-nvim} "$file"
+  fi
+}
+
+# --------------------------------
+# Development environment
+# --------------------------------
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # --------------------------------
 # Enables Vi mode in readline
 # --------------------------------
 bindkey -v
+
 # Reduces lag time for vi mode input
 export KEYTIMEOUT=1
 
