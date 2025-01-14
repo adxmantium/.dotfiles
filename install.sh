@@ -76,6 +76,8 @@ install_if_missing "ripgrep"
 install_if_missing "bat"
 install_if_missing "htop"
 install_if_missing "fzf"
+install_if_missing "wget"
+
 # Check if fzf keybindings are installed by looking for the completion file
 if [ ! -f "$HOME/.fzf.zsh" ]; then
     echo "Setting up fzf key bindings and completion..."
