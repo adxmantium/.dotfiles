@@ -99,6 +99,9 @@ fe() {
 # --------------------------------
 export EDITOR='nvim'
 export VISUAL='nvim'
+# for colors to appear correctly in wezterm, 
+# you need this line & download term definition from https://wezfurlong.org/wezterm/config/lua/config/term.html
+export TERM='wezterm'
 
 # --------------------------------
 # Enables Vi mode in readline

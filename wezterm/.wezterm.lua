@@ -57,7 +57,7 @@ config.color_scheme = scheme_for_appearance(get_appearance())
 config.enable_tab_bar = false
 config.font_size = 12
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.90
+config.window_background_opacity = 0.80
 config.macos_window_background_blur = 20
 
 -- -- and finally, return the configuration to wezterm

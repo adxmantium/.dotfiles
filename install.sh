@@ -106,6 +106,7 @@ TPM_DIR="$HOME/.tmux/plugins/tpm"
 TPM_PLUGIN_SCRIPT="$TPM_DIR/bin/install_plugins"
 
 # Install TPM if not present
+# If this doesn't work, the you have to enter tmux session, then do <prefix> + I to install plugins
 if [ ! -d "$TPM_DIR" ]; then
     echo "Installing tmux plugin manager..."
     if ! git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"; then
