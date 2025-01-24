@@ -53,6 +53,7 @@ function scheme_for_appearance(appearance)
 	end
 end
 
+config.term = "wezterm"
 config.color_scheme = scheme_for_appearance(get_appearance())
 config.enable_tab_bar = false
 config.font_size = 12
