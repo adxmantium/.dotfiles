@@ -5,3 +5,13 @@
 	email = ajadams10@gmail.com
 [core]
   editor = nvim
+  fsmonitor = true
+  untrackedcache = true
+[alias]
+  del = "!~/.dotfiles/scripts/git/delete_branches.sh"
+  up = "!git push origin $(git branch --show-current)"
+  theeffup = "!git push --force-with-lease origin $(git branch --show-current)"
+  # git add wrapper
+  fa = "!git status -s | awk '{print $2}' | fzf-tmux --multi --preview 'git diff --color=always {}' | xargs git add && git status"
+  # git restore wrapper
+  fr = "!git status -s | awk '{print $2}' | fzf-tmux --nulti --preview 'git diff --color=always {}' | xargs git restore --staged && git status"
