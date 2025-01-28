@@ -8,9 +8,12 @@
   fsmonitor = true
   untrackedcache = true
 [alias]
-  del = "!~/.dotfiles/scripts/git/delete_branches.sh"
+  # standard push without remembering branch name
   up = "!git push origin $(git branch --show-current)"
+  # force push up
   theeffup = "!git push --force-with-lease origin $(git branch --show-current)"
+  # script to safely & quickly delete multiple branches with a preview
+  del = "!~/.dotfiles/scripts/git/delete_branches.sh"
   # git add wrapper
   fa = "!git status -s | awk '{print $2}' | fzf-tmux --multi --preview 'git diff --color=always {}' | xargs git add && git status"
   # git restore wrapper
