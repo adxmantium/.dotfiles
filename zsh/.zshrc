@@ -22,8 +22,10 @@ alias whatsmyip="ipconfig getifaddr en0"
 alias ff='cd "$(fd -t d --exclude ~/Music/ --exclude ~/Movies/ --exclude ~/Library/ --exclude ~/Pictures/ . | fzf-tmux -p --reverse)"'
 alias fo='vim "$(fd --exclude ~/Music/ --exclude ~/Movies/ --exclude ~/Library/ --exclude ~/Pictures/ --type f | fzf-tmux -p --reverse)"'
 alias vim="nvim"
+alias v="nvim"
 alias cht="~/.dotfiles/scripts/cheatsht/tmux-cht.sh"
-alias dotfiles="~/.dotfiles"
+alias dotfiles="cd ~/.dotfiles"
+alias nv="cd ~/.config/nvim"
 
 # Modern CLI alternatives
 alias ls='eza --icons'
