@@ -1,17 +1,23 @@
-# Taps
-tap "homebrew/cask-fonts"
-
 # Core dependencies
 brew "stow"
 
-# Terminal and shell tools
-cask "wezterm"
+# Apps
 cask "font-meslo-lg-nerd-font"
-brew "starship"
+cask "wezterm"
+cask "spotify"
+cask "google-chrome"
+cask "1password"
+cask "1password-cli"
+# cask "cursor"
+# cask "notion"
+
+# Terminal and shell tools
+# brew "starship"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "eza"
 brew "tmux"
+brew "powerlevel10k"
 
 # Development tools
 brew "neovim"
@@ -20,12 +26,12 @@ brew "fd"
 brew "gh"
 brew "lua"
 brew "go"
+brew "node"
 brew "ripgrep"
 brew "bat"
 brew "htop"
 brew "fzf"
 brew "wget"
-brew "1password-cli"
 
 # Json
 brew "jq"
