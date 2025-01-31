@@ -51,6 +51,17 @@ for folder in $(echo "$STOW_FOLDERS" | sed "s/,/ /g"); do
 done
 popd || exit 1
 
+# Set up WezTerm terminfo
+echo "Setting up WezTerm terminfo..."
+if command -v wezterm >/dev/null 2>&1; then
+    tempfile=$(mktemp) \
+        && wezterm terminfo > $tempfile \
+        && tic -x -o ~/.terminfo $tempfile \
+        && rm $tempfile
+else
+    echo "Warning: WezTerm not found, skipping terminfo setup"
+fi
+
 # Set up tmux plugins
 echo "Setting up tmux plugins..."
 TPM_DIR="$HOME/.tmux/plugins/tpm"

@@ -23,6 +23,7 @@ alias ff='cd "$(fd -t d --exclude ~/Music/ --exclude ~/Movies/ --exclude ~/Libra
 alias fo='vim "$(fd --exclude ~/Music/ --exclude ~/Movies/ --exclude ~/Library/ --exclude ~/Pictures/ --type f | fzf-tmux -p --reverse)"'
 alias vim="nvim"
 alias cht="~/.dotfiles/scripts/cheatsht/tmux-cht.sh"
+alias dotfiles="~/.dotfiles"
 
 # Modern CLI alternatives
 alias ls='eza --icons'
@@ -155,7 +156,7 @@ if command -v starship >/dev/null 2>&1; then
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-if [ -f ~/powerlevel10k/powerlevel10k.zsh-theme ]; then
-  source ~/powerlevel10k/powerlevel10k.zsh-theme
+if [ -f $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme ]; then
+  source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
