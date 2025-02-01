@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/.dotfiles ~/.dotfiles/scripts ~/.dotfiles/nvim/.config ~/.config ~/Dev ~/scripts -mindepth 1 -maxdepth 1 -type d | fzf-tmux -p --reverse --prompt="Tmux switch by dirname > ")
+    selected=$(find ~/.dotfiles ~/.dotfiles/scripts ~/.dotfiles/nvim/.config ~/.config ~/Dev ~/Developer ~/scripts -mindepth 1 -maxdepth 1 -type d | fzf-tmux -p --reverse --prompt="Tmux switch by dirname > ")
 fi
 
 if [[ -z $selected ]]; then

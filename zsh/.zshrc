@@ -26,6 +26,7 @@ alias v="nvim"
 alias cht="~/.dotfiles/scripts/cheatsht/tmux-cht.sh"
 alias dotfiles="cd ~/.dotfiles"
 alias nv="cd ~/.config/nvim"
+alias dev="cd ~/Developer"
 
 # Modern CLI alternatives
 alias ls='eza --icons'
