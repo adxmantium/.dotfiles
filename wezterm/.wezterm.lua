@@ -38,6 +38,12 @@ local themes = {
   vscode = "Vs Code Dark+ (Gogh)",
 }
 
+local fonts = {
+  jetbrains = "JetBrains Mono",
+  fira = "Fira Code",
+  commit = "CommitMono Nerd Font",
+}
+
 function get_appearance()
   if wezterm.gui then
     return wezterm.gui.get_appearance()
@@ -57,6 +63,7 @@ config.term = "wezterm"
 config.color_scheme = scheme_for_appearance(get_appearance())
 config.enable_tab_bar = false
 config.font_size = 12
+config.font = wezterm.font(fonts.commit)
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.95
 config.macos_window_background_blur = 20

@@ -3,11 +3,13 @@ brew "stow"
 
 # Apps
 cask "font-meslo-lg-nerd-font"
+cask "font-commit-mono-nerd-font" # Jetbrains Mono already comes with wezterm
 cask "wezterm"
 cask "spotify"
 cask "google-chrome"
 cask "1password"
 cask "1password-cli"
+cask "slack"
 # cask "cursor"
 # cask "notion"
 
