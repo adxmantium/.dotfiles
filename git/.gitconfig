@@ -15,6 +15,8 @@
   # script to safely & quickly delete multiple branches with a preview
   del = "!~/.dotfiles/scripts/git/delete_branches.sh"
   # git add wrapper
-  fa = "!git status -s | awk '{print $2}' | fzf-tmux --multi --preview 'git diff --color=always {}' | xargs git add && git status"
+  fa = "!git status -s | awk '{print $2}' | fzf --multi --preview 'git diff --color=always {}' | xargs git add && git status"
   # git restore wrapper
-  fr = "!git status -s | awk '{print $2}' | fzf-tmux --nulti --preview 'git diff --color=always {}' | xargs git restore && git status"
+  fr = "!git status -s | awk '{print $2}' | fzf --multi --preview 'git diff --color=always {}' | xargs git restore && git status"
+  # git restore --staged wrapper
+  frs = "!git status -s | awk '{print $2}' | fzf --multi --preview 'git diff --staged --color=always {}' | xargs git restore --staged && git status"

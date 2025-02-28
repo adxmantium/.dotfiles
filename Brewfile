@@ -10,8 +10,8 @@ cask "google-chrome"
 cask "1password"
 cask "1password-cli"
 cask "slack"
+cask "notion"
 # cask "cursor"
-# cask "notion"
 
 # Terminal and shell tools
 # brew "starship"
