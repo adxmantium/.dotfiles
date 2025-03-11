@@ -7,6 +7,7 @@
   editor = nvim
   fsmonitor = true
   untrackedcache = true
+	hooksPath = ~/.dotfiles/scripts/git/hooks
 [alias]
   # standard push without remembering branch name
   up = "!git push origin $(git branch --show-current)"
