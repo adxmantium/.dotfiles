@@ -29,11 +29,13 @@ brew "gh"
 brew "lua"
 brew "go"
 brew "node"
+brew "oven-sh/bun/bun" # like the js bun
 brew "ripgrep"
 brew "bat"
 brew "htop"
 brew "fzf"
 brew "wget"
+brew "ollama"
 
 # Json
 brew "jq"

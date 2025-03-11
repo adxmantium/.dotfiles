@@ -36,6 +36,7 @@ alias cat='bat'
 alias find='fd'
 alias htop='btop'
 alias grep='rg'
+alias ol='ollama'
 
 # Git aliases
 alias gs='git status'
@@ -53,6 +54,11 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ~='cd ~'
 alias dotfiles='cd ~/.dotfiles'
+
+# ollama run wrapper to use fzf to list models
+olrun() {
+  ol run $(ol list | grep ':' | awk '{print $1}' | fzf)
+}
 
 # Safety first - prevent dangerous rm commands
 safer_rm() {
