@@ -39,7 +39,8 @@ async function getCommitMsg(diff: string): Promise<string> {
       refactor: simplify conditional logic in parser to make it easier to do "x"
       Here's the git diff:
       ${diff}`;
-  const model = "qwen2.5-coder:7b";
+  const model = await $`skate get prepare-commit-msg-model`.text();
+  log('🤖 Using model: ', model);
   const data = {
     model,
     prompt,

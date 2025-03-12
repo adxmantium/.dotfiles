@@ -37,6 +37,8 @@ alias find='fd'
 alias htop='btop'
 alias grep='rg'
 alias ol='ollama'
+alias kv='skate'
+
 
 # Git aliases
 alias gs='git status'
@@ -58,6 +60,11 @@ alias dotfiles='cd ~/.dotfiles'
 # ollama run wrapper to use fzf to list models
 olrun() {
   ol run $(ol list | grep ':' | awk '{print $1}' | fzf)
+}
+
+# update prepare-commit-msg-model kv value
+setcommitmodel() {
+  kv get local_models | fzf | xargs skate set prepare-commit-msg-model && echo "Now using \"$(skate get prepare-commit-msg-model)\" for prepare-commit-msg script"
 }
 
 # Safety first - prevent dangerous rm commands

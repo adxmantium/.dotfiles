@@ -1,5 +1,5 @@
-# Core dependencies
-brew "stow"
+# Taps
+tap "charmbracelet/tap" # for skate
 
 # Apps
 cask "font-meslo-lg-nerd-font"
@@ -17,9 +17,11 @@ cask "notion"
 # brew "starship"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
+brew "stow"
 brew "eza"
 brew "tmux"
 brew "powerlevel10k"
+brew "charmbracelet/tap/skate" # local kv store
 
 # Development tools
 brew "neovim"
@@ -36,6 +38,5 @@ brew "htop"
 brew "fzf"
 brew "wget"
 brew "ollama"
-
-# Json
 brew "jq"
+
