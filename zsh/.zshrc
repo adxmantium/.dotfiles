@@ -56,6 +56,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ~='cd ~'
 alias dotfiles='cd ~/.dotfiles'
+alias ,='cd -'
 
 # ollama run wrapper to use fzf to list models
 olrun() {
