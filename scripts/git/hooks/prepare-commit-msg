@@ -1,16 +1,17 @@
 #!/usr/bin/env bun
 
 /**
- * This script enables the git aicommit command which is sourced in my .gitconfig
+ * This script is the source of the prepare-commit-msg git hook
  *
  * What is does:
  * - reads `git diff --staged` to get changed files ready for commiting
  * - passes that plus a pre-baked prompt as context to a local llm api at the /generate endpoint
- * - llm returns a commit message
- * - script asks for confirmation before proceeding with running `git commit -m '[generated msg]'`
+ * - llm returns a generated commit message
+ * - ai commit msg is writen to commit message file
+ * - git commit is executed & open in editor of choice
  *
  * Usage:
- * - git aicommit
+ * - git commit
  */
 
 import { $ } from "bun";
@@ -20,6 +21,9 @@ const { log, error } = console;
 
 type CommitType = 'message' | 'template' | 'merge' | 'squash' | 'commit' | undefined;
 
+/**
+ * Try catch wrapper for async functions
+ */
 async function tryCatch(cb: Function): Promise<any> {
   try {
     const res = await cb();
@@ -29,6 +33,9 @@ async function tryCatch(cb: Function): Promise<any> {
   }
 }
 
+/**
+ * Get commit message from LLM w/ git diff as context & pre-baked prompt
+ */
 async function getCommitMsg(diff: string): Promise<string> {
   const prompt = `Generate a concise, yet descriptive, conventional commit message based on the following git diff.
       Use one of these types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert.
@@ -50,6 +57,9 @@ async function getCommitMsg(diff: string): Promise<string> {
   return $`curl http://localhost:11434/api/generate -d '${JSON.stringify(data)}'`.text();
 }
 
+/**
+  * Merge the original commit message with the AI generated commit message
+  */
 function createCommitMsg(ogMsg: string, aiMsg: string, type: CommitType): string {
   if (type === 'merge' || type === 'squash') {
     return ogMsg;
@@ -61,6 +71,9 @@ function createCommitMsg(ogMsg: string, aiMsg: string, type: CommitType): string
   return linesWithAiMsg.join('\n');
 }
 
+/**
+  * Get staged diff, pass to LLM, get ai msg, merge w/ og commit msg & write to commitMsgfile
+  */
 async function main(): Promise<void> {
   const [, , commitMsgFile, commitType] = process.argv;
 
