@@ -65,7 +65,12 @@ olrun() {
 
 # update prepare-commit-msg-model kv value
 setcommitmodel() {
-  kv get local_models | fzf | xargs skate set prepare-commit-msg-model && echo "Now using \"$(skate get prepare-commit-msg-model)\" for prepare-commit-msg script"
+  ol list | grep ':' | awk '{print $1}' | fzf | tr -d '\n' | skate set prepare-commit-msg-model && echo "Now using \"$(skate get prepare-commit-msg-model)\" for prepare-commit-msg script"
+}
+
+# puts all skate keys into fzf then pipes selection to skate get so I don't have to remember what my keys are named
+kvget() {
+  skate list -k | fzf | xargs skate get
 }
 
 # Safety first - prevent dangerous rm commands
