@@ -8,6 +8,14 @@
   fsmonitor = true
   untrackedcache = true
 	hooksPath = ~/.dotfiles/scripts/git/hooks
+[diff]
+  # sets nvim as the default diff tool
+  tool = nvimdiff
+[difftool "nvimdiff"]
+  # opens nvim in diff mode with local files on left & remote files on right
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" -c 'wincmd w' -c 'wincmd L'"
+[difftool]
+  prompt = false # disables git difftool "Launch difftool for file [y/n]?" prompt 
 [alias]
   # standard push without remembering branch name
   up = "!git push origin $(git branch --show-current)"
@@ -16,8 +24,8 @@
   # script to safely & quickly delete multiple branches with a preview
   del = "!~/.dotfiles/scripts/git/delete_branches.sh"
   # git add wrapper
-  fa = "!git status -s | awk '{print $2}' | fzf --multi --preview 'git diff --color=always {}' | xargs git add && git status"
+  fa = "!git status -s | awk '{print $2}' | fzf --multi --preview-window up:90% --preview 'git diff --color=always {}' | xargs git add && git status"
   # git restore wrapper
-  fr = "!git status -s | awk '{print $2}' | fzf --multi --preview 'git diff --color=always {}' | xargs git restore && git status"
+  fr = "!git status -s | awk '{print $2}' | fzf --multi --preview-window up:90% --preview 'git diff --color=always {}' | xargs git restore && git status"
   # git restore --staged wrapper
-  frs = "!git status -s | awk '{print $2}' | fzf --multi --preview 'git diff --staged --color=always {}' | xargs git restore --staged && git status"
+  frs = "!git status -s | awk '{print $2}' | fzf --multi --preview-window up:90% --preview 'git diff --staged --color=always {}' | xargs git restore --staged && git status"
