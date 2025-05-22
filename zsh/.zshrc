@@ -134,6 +134,7 @@ export VISUAL='nvim'
 export TERM='wezterm'
 export MANPAGER="nvim +Man!"
 
+# open man pages in nvim
 function vhelp() {
   if [ -z "#1" ]; then
     echo "Usage: vhelp <command>"
