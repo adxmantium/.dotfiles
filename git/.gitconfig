@@ -31,3 +31,5 @@
   fr = "!git diff --name-only | fzf --multi --preview-window up:90% --preview 'git diff --color=always {}' | xargs git restore && git status"
   # git restore --staged wrapper
   frs = "!git diff --name-only --staged | fzf --multi --preview-window up:90% --preview 'git diff --staged --color=always {}' | xargs git restore --staged && git status"
+  # better git diff - opens in nvim
+  diffn = "!git diff | nvim -c 'set buftype=nofile' -c 'set syntax=diff' -"

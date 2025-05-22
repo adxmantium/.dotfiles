@@ -132,6 +132,16 @@ export VISUAL='nvim'
 # for colors to appear correctly in wezterm, 
 # you need this line & download term definition from https://wezfurlong.org/wezterm/config/lua/config/term.html
 export TERM='wezterm'
+export MANPAGER="nvim +Man!"
+
+function vhelp() {
+  if [ -z "#1" ]; then
+    echo "Usage: vhelp <command>"
+    return 1
+  fi
+
+  "$@" --help | nvim -c 'set buftype=nofile' -c 'set syntax=man' -
+}
 
 # --------------------------------
 # Enables Vi mode in readline
