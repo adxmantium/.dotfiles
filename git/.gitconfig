@@ -7,7 +7,7 @@
   editor = nvim
   fsmonitor = true
   untrackedcache = true
-	hooksPath = ~/.dotfiles/scripts/git/hooks
+  # hooksPath = ~/.dotfiles/scripts/git/hooks
 [diff]
   # sets nvim as the default diff tool
   tool = nvimdiff
@@ -21,6 +21,7 @@
   up = "!git push origin $(git branch --show-current)"
   # force push up
   theeffup = "!git push --force-with-lease origin $(git branch --show-current)"
+  fup = "!git push --force-with-lease origin $(git branch --show-current)"
   # script to safely & quickly delete multiple branches with a preview
   del = "!~/.dotfiles/scripts/git/delete_branches.sh"
   # git add wrapper
@@ -33,3 +34,7 @@
   frs = "!git diff --name-only --staged | fzf --multi --preview-window up:90% --preview 'git diff --staged --color=always {}' | xargs git restore --staged && git status"
   # better git diff - opens in nvim
   diffn = "!git diff | nvim -c 'set buftype=nofile' -c 'set syntax=diff' -"
+  # change branch via fzf
+  out = "!git checkout $(git branch | fzf-tmux -p --reverse --prompt='Select branch > ' --preview 'git log main..$(echo {} | tr -d \" *\")')"
+  # display num of lines changed comparing current branch w/ main
+  lines-changed = "!git diff --numstat main...HEAD | awk '{total += $1 + $2} END {print total}'"

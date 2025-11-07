@@ -23,6 +23,7 @@ alias ff='cd "$(fd -t d --exclude ~/Music/ --exclude ~/Movies/ --exclude ~/Libra
 alias fo='vim "$(fd --exclude ~/Music/ --exclude ~/Movies/ --exclude ~/Library/ --exclude ~/Pictures/ --type f | fzf-tmux -p --reverse)"'
 alias vim="nvim"
 alias v="nvim ."
+alias vf="nvim -c \":lua require('fzf-lua').files({})\""
 alias cht="~/.dotfiles/scripts/cheatsht/tmux-cht.sh"
 alias dotfiles="cd ~/.dotfiles"
 alias nv="cd ~/.config/nvim"
@@ -91,7 +92,8 @@ alias rm='safer_rm'
 # --------------------------------
 # FZF configuration
 # --------------------------------
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # this is the old way of sourcing
+command -v fzf &> /dev/null && source <(fzf --zsh) # checks if fzf is installed before sourcing
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 # Set different FZF display options based on whether we're in tmux
 if [ -n "$TMUX" ]; then
