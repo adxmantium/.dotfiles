@@ -28,6 +28,7 @@ alias cht="~/.dotfiles/scripts/cheatsht/tmux-cht.sh"
 alias dotfiles="cd ~/.dotfiles"
 alias nv="cd ~/.config/nvim"
 alias dev="cd ~/Developer"
+alias hound="~/.dotfiles/scripts/hound.sh"
 
 # Modern CLI alternatives
 alias ls='eza --icons'
