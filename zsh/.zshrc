@@ -75,21 +75,6 @@ kvget() {
   skate list -k | fzf | xargs skate get
 }
 
-# Safety first - prevent dangerous rm commands
-safer_rm() {
-    # Prevent rm -rf / or rm -rf /*
-    if [[ "$*" =~ ^-[[:alnum:]]*[fF][[:alnum:]]*[[:space:]]*(\/|\/\*) ]]; then
-        echo "Error: Attempting to remove root directory or its contents. Operation blocked for safety."
-        return 1
-    fi
-    
-    # Call the real rm command
-    command rm "$@"
-}
-
-# Set up the alias for safer rm
-alias rm='safer_rm'
-
 # --------------------------------
 # FZF configuration
 # --------------------------------
